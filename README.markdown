@@ -73,18 +73,25 @@ The dataset consists of **34 columns** with the following details:
     - **Policy Dim**: Includes policy details (`AddressChange-Claim`, `BasePolicy`, `DaysPolicy-Accident`, `DaysPolicy-Claim`, `DriverRating`, `HasPastClaim`, `NumberOfCars`, `PastNumberOfClaims`, `Policy_ID`, `PolicyType`).
     - **Vehicle Dim**: Covers vehicle attributes (`AgeOfVehicle`, `Make`, `Vehicle_ID`, `VehicleCategory`, `VehiclePrice`).
 - **Schema Diagram**:
-  ![Star Schema Diagram](attachment://star_schema_diagram.png)
+  ![Star Schema Diagram](https://github.com/HazemMedhat/Automobile-Insurance-Fraud-Analysis-Detection/blob/ba78d7e50ece23b1e84bde6059ad041c7965f3a4/Data%20Modeling%20.png)
 
-## Dashboard Screenshots and Insights
-- **Screenshot 1: Claims by Month Trend**
-  - **Image**: ![Claims by Month Trend](attachment://claims_by_month_trend.png)
-  - **Insight**: A noticeable peak in claims during December and January suggests seasonal factors, possibly related to winter weather conditions or holiday travel, which could correlate with higher accident rates.
+## Dashboard
+- **Overview of Fraud**
+  ![Overview of Fraud](https://github.com/HazemMedhat/Automobile-Insurance-Fraud-Analysis-Detection/blob/ba78d7e50ece23b1e84bde6059ad041c7965f3a4/Fraud%20Overview%20Dashboard%20.png)
+
 - **Screenshot 2: Fraud Distribution by Age Group**
-  - **Image**: ![Fraud Distribution by Age Group](attachment://fraud_by_age_group.png)
-  - **Insight**: The 26–35 age group has the highest fraud incidence, indicating a potential area for targeted fraud prevention efforts.
+  ![Customer & Company & Vehicle Profile](https://github.com/HazemMedhat/Automobile-Insurance-Fraud-Analysis-Detection/blob/ba78d7e50ece23b1e84bde6059ad041c7965f3a4/Customer%20%26%20Company%20%26%20Vehicle%20Profile.png)
+
 - **Screenshot 3: Vehicle Price vs. Claim Amount**
-  - **Image**: ![Vehicle Price vs. Claim Amount](attachment://vehicle_price_vs_claim_amount.png)
-  - **Insight**: Higher vehicle price ranges (e.g., >$69,000) show larger claim amounts, suggesting a correlation that may warrant further investigation for inflated claims.
+  ![Claims & Policy](https://github.com/HazemMedhat/Automobile-Insurance-Fraud-Analysis-Detection/blob/ba78d7e50ece23b1e84bde6059ad041c7965f3a4/Claim%20%26%20Policy%20Dashboard%20.png)
+
+## Key Insights
+  - Fraudulent claims are most prevalent under the "Sedan - All Perils" policy type, indicating a need for enhanced scrutiny in this category.
+  - Urban areas exhibit a significantly higher incidence of fraudulent claims compared to rural areas, suggesting a focus on urban claim patterns.
+  - The majority of fraudulent claims are associated with policyholders aged 31 to 35, pointing to this age group as a key area for fraud prevention.
+  - Married policyholders account for the largest share of fraudulent claims, suggesting targeted monitoring of this demographic.
+  - Fraudulent claims with no supplements are the most frequent, highlighting the importance of enforcing stricter documentation requirements.
+
 
 ## Preprocessing
 - **Encoding Features**: Use target encoding for categorical variables like `Make`, `AccidentArea`, and `PolicyType` to encode them based on the mean of the `FraudFound` target variable. Apply label encoding to binary columns like `PoliceReportFiled` and `WitnessPresent` to convert "Yes"/"No" to 0/1.
@@ -92,11 +99,5 @@ The dataset consists of **34 columns** with the following details:
 - **SMOTE for Imbalanced Classes**: Use Synthetic Minority Over-sampling Technique (SMOTE) to address the imbalance in the `FraudFound` column, generating synthetic samples for the minority class (fraudulent claims) to balance the dataset.
 
 ## ML Models with Results
-- **Random Forest**: Trained with 100 trees and a maximum depth of 10. Achieved an accuracy of 87% and an F1-score of 0.75 for the fraudulent class on a test set, indicating good performance in detecting fraud.
-- **XGBoost**: Trained with 50 estimators and a learning rate of 0.1. Achieved an accuracy of 89% and an F1-score of 0.78 for the fraudulent class, showing slightly better precision and recall compared to Random Forest.
-- **Interpretation**: Both models perform well, with XGBoost slightly outperforming Random Forest. The higher F1-score suggests better balance between precision and recall, critical for fraud detection where false negatives are costly.
-
-## Next Steps
-- **Data Preprocessing**: Clean the dataset, handle missing values (e.g., Age = 0), and encode categorical variables.
-- **Power BI Analysis**: Import the dataset into Power BI and create visualizations for key metrics.
-- **ML Model Development**: Train models (e.g., Random Forest, XGBoost) to predict `FraudFound` using relevant features.
+- **Random Forest**: Achieved an accuracy of 93.7%,indicating good performance in detecting fraud.
+- **XGBoost**: Achieved an accuracy of 94%, showing slightly better precision and recall compared to Random Forest.
